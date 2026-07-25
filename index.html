@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Jean Paul Placencio Macías · Ingeniero Eléctrico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="card" id="card">
+
+  <div class="hero">
+    <img src="images/headshot.jpg" alt="Foto de perfil">
+    <div class="hero-frame"></div>
+    <div class="hero-text">
+      <p class="eyebrow" id="eyebrow">Tarjeta de presentación digital</p>
+      <h1 class="name" id="fullName">Jean Paul Placencio Macías</h1>
+    </div>
+  </div>
+
+  <div class="nameplate-wrap">
+    <div class="nameplate">
+      <span class="screw tl"></span><span class="screw tr"></span>
+      <span class="screw bl"></span><span class="screw br"></span>
+      <p class="plate-title" id="plateTitle">Ingeniero Eléctrico</p>
+      <p class="plate-sub" id="plateSub">Universidad Técnica Estatal de Quevedo</p>
+    </div>
+  </div>
+
+  <div class="actions">
+    <a class="action" id="btnPhone" href="tel:+593900000000">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <span>Llamar</span>
+    </a>
+    <a class="action" id="btnWhatsapp" href="https://wa.me/593900000000" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21l1.65-4.95A9 9 0 1 1 8 19.5L3 21z"/><path d="M8.5 9.5c0 3.5 2.5 6 6 6l1-2-2.5-1-1 1a5 5 0 0 1-3.5-3.5l1-1-1-2.5-2 1z"/></svg>
+      <span>WhatsApp</span>
+    </a>
+    <a class="action" id="btnEmail" href="mailto:tunombre@email.com">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+      <span>Email</span>
+    </a>
+    <button class="action" id="btnSave" onclick="downloadVCard()">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      <span>Guardar</span>
+    </button>
+  </div>
+
+  <div class="divider" style="margin-top:20px;"></div>
+
+  <section>
+    <p class="kicker">Sobre mí</p>
+    <p class="bio" id="bio">Ingeniero eléctrico egresado de la Universidad Técnica Estatal de Quevedo, con enfoque en el diseño, mantenimiento y mejora continua de sistemas eléctricos. Comprometido con la calidad, la seguridad y la eficiencia en cada proyecto.</p>
+    <div class="edit-note">◻ EDITA: reemplaza este texto por tu biografía real (2–3 líneas) en la constante <b>profile.bio</b> del script.</div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <p class="kicker">Formación &amp; credenciales</p>
+    <div class="cred-row">
+      <span class="cred-mark"></span>
+      <div>
+        <p class="cred-main">Ingeniería Eléctrica</p>
+        <p class="cred-sub">Universidad Técnica Estatal de Quevedo</p>
+      </div>
+    </div>
+    <div class="cred-row">
+      <span class="cred-mark"></span>
+      <div>
+        <p class="cred-main" id="cityLine">Quevedo, Ecuador</p>
+        <p class="cred-sub">Disponible para proyectos y colaboraciones</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <p class="kicker">Galería</p>
+    <div class="gallery">
+      <img class="g1" src="images/diploma.jpg" alt="Título profesional">
+      <img class="g2" src="images/headshot.jpg" alt="Foto profesional">
+      <div class="g3">◻ Añade aquí otra<br>foto de tu trabajo</div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <p class="kicker">Conecta conmigo</p>
+    <a class="connect-btn primary" id="btnLinkedin" href="https://www.linkedin.com/in/tu-usuario" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>
+      Ver perfil de LinkedIn
+    </a>
+    <div class="edit-note">◻ EDITA: cambia el enlace de LinkedIn por el tuyo en <b>profile.linkedin</b>.</div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <p class="kicker">Comparte esta tarjeta</p>
+    <div class="qr-card">
+      <div class="qr-frame">
+        <img id="qrImg" src="" alt="Código QR">
+      </div>
+      <p class="qr-caption">Escanea para abrir esta tarjeta en tu teléfono<br><b id="qrUrlLabel">tu-dominio.com/tarjeta</b></p>
+    </div>
+    <div class="edit-note" style="margin-top:12px;">◻ Este QR apunta a un enlace de ejemplo. Sube este archivo a un hosting (ver instrucciones que te di en el chat) y cambia <b>profile.pageUrl</b> por tu URL real para que el QR funcione.</div>
+  </section>
+
+  <footer>
+    <div class="footer-mark">Tarjeta digital · <b>J.P.P.M</b> · 2026</div>
+  </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
