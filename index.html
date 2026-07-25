@@ -330,7 +330,7 @@
       <div class="qr-frame">
         <img id="qrImg" src="" alt="Código QR">
       </div>
-      <p class="qr-caption">Escanea para abrir esta tarjeta en tu teléfono<br><b id="qrUrlLabel">tu-dominio.com/tarjeta</b></p>
+      <p class="qr-caption">Escanea para abrir esta tarjeta en tu teléfono<br><a id="qrUrlLabel" href="#" style="color:var(--brass-light); font-weight:500; text-decoration:none;">tu-dominio.com/tarjeta</a></p>
     </div>
   </section>
 
@@ -359,7 +359,8 @@
   document.getElementById('fullName').textContent = profile.fullName;
   document.getElementById('plateTitle').textContent = profile.title;
   document.getElementById('plateSub').textContent = profile.university;
-  document.getElementById('cityLine').textContent = profile.city;
+  const cityEl = document.getElementById('cityLine');
+  if (cityEl) cityEl.textContent = profile.city;
   document.getElementById('bio').textContent = profile.bio;
   document.getElementById('btnPhone').href = 'tel:' + profile.phone;
   document.getElementById('btnWhatsapp').href = 'https://wa.me/' + profile.phone.replace(/\D/g,'');
