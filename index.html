@@ -46,7 +46,7 @@
   .hero{
     position:relative;
     width:100%;
-    aspect-ratio: 4 / 3.6;
+    aspect-ratio: 4 / 2.5;
     overflow:hidden;
   }
   .hero img{
@@ -73,22 +73,22 @@
 
   .hero-text{
     position:absolute; left:0; right:0; bottom:0;
-    padding: 0 28px 22px;
+    padding: 0 24px 14px;
     z-index:3;
   }
   .eyebrow{
     font-family:'JetBrains Mono', monospace;
-    font-size:10.5px;
-    letter-spacing:0.24em;
+    font-size:9px;
+    letter-spacing:0.22em;
     text-transform:uppercase;
     color: var(--brass-light);
-    margin:0 0 8px;
+    margin:0 0 4px;
     opacity:0.9;
   }
   .name{
     font-family:'Fraunces', serif;
     font-weight:500;
-    font-size: 34px;
+    font-size: 24px;
     line-height:1.05;
     margin:0;
     color:#f6f1e8;
@@ -96,12 +96,12 @@
   }
 
   /* ---------- NAMEPLATE ---------- */
-  .nameplate-wrap{ padding: 0 20px; margin-top:-22px; position:relative; z-index:4; }
+  .nameplate-wrap{ padding: 0 20px; margin-top:-16px; position:relative; z-index:4; }
   .nameplate{
     background: linear-gradient(155deg, #201c16 0%, #16130f 55%, #1c1812 100%);
     border: 1px solid var(--plate-edge);
     border-radius: 3px;
-    padding: 16px 20px;
+    padding: 10px 16px;
     position:relative;
     box-shadow: 0 14px 28px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.03);
   }
@@ -122,16 +122,16 @@
   .plate-title{
     font-family:'JetBrains Mono', monospace;
     font-weight:600;
-    font-size:14.5px;
+    font-size:13px;
     letter-spacing:0.06em;
     color: var(--brass-light);
     text-transform:uppercase;
-    margin:0 0 4px;
+    margin:0 0 2px;
     text-align:center;
   }
   .plate-sub{
     font-family:'JetBrains Mono', monospace;
-    font-size:10.5px;
+    font-size:9.5px;
     letter-spacing:0.05em;
     color: var(--text-muted);
     text-align:center;
@@ -141,60 +141,60 @@
   /* ---------- ACTIONS ---------- */
   .actions{
     display:grid; grid-template-columns: repeat(4,1fr);
-    gap:10px;
-    padding: 16px 20px 4px;
+    gap:8px;
+    padding: 10px 20px 2px;
   }
   .action{
-    display:flex; flex-direction:column; align-items:center; gap:8px;
+    display:flex; flex-direction:column; align-items:center; gap:5px;
     text-decoration:none; color:var(--text);
     background: var(--bg-soft);
     border: 1px solid rgba(255,255,255,0.06);
     border-radius: 12px;
-    padding: 13px 4px 11px;
+    padding: 9px 4px 7px;
     cursor:pointer;
     transition: border-color .2s ease, transform .2s ease, background .2s ease;
     font-family:inherit;
   }
   .action:hover{ border-color: var(--brass-dim); transform: translateY(-2px); background:#161519; }
-  .action svg{ width:19px; height:19px; stroke: var(--brass-light); }
-  .action span{ font-size:10px; letter-spacing:0.03em; color:var(--text-muted); text-align:center; }
+  .action svg{ width:17px; height:17px; stroke: var(--brass-light); }
+  .action span{ font-size:9px; letter-spacing:0.03em; color:var(--text-muted); text-align:center; }
 
   /* ---------- SECTIONS ---------- */
-  section{ padding: 16px 24px; }
+  section{ padding: 10px 24px; }
   .divider{
     height:1px; margin: 0 24px;
     background: linear-gradient(90deg, transparent, var(--divider) 50%, transparent);
   }
   .kicker{
     font-family:'JetBrains Mono', monospace;
-    font-size:10px; letter-spacing:0.22em; text-transform:uppercase;
-    color: var(--brass); margin:0 0 12px;
+    font-size:9px; letter-spacing:0.2em; text-transform:uppercase;
+    color: var(--brass); margin:0 0 6px;
     display:flex; align-items:center; gap:10px;
   }
   .kicker::after{ content:""; flex:1; height:1px; background: var(--divider); }
   .bio{
     font-family:'Fraunces', serif; font-style:italic; font-weight:400;
-    font-size:17px; line-height:1.6; color:#ddd6c9; margin:0;
+    font-size:14px; line-height:1.45; color:#ddd6c9; margin:0;
   }
 
   .cred-row{
-    display:flex; gap:14px; align-items:flex-start;
-    padding: 13px 0; border-bottom:1px solid rgba(255,255,255,0.05);
+    display:flex; gap:12px; align-items:flex-start;
+    padding: 7px 0; border-bottom:1px solid rgba(255,255,255,0.05);
   }
   .cred-row:last-child{ border-bottom:none; }
   .cred-mark{
-    width:8px; height:8px; margin-top:6px; flex-shrink:0;
+    width:7px; height:7px; margin-top:5px; flex-shrink:0;
     background: var(--brass); transform: rotate(45deg);
     box-shadow: 0 0 0 1px rgba(179,145,92,0.25), 0 0 10px rgba(179,145,92,0.35);
   }
-  .cred-main{ font-size:14.5px; color: var(--text); font-weight:500; margin:0 0 2px; }
-  .cred-sub{ font-size:12.5px; color: var(--text-muted); margin:0; }
+  .cred-main{ font-size:13px; color: var(--text); font-weight:500; margin:0 0 1px; }
+  .cred-sub{ font-size:11px; color: var(--text-muted); margin:0; }
 
   .connect-btn{
-    display:flex; align-items:center; justify-content:center; gap:10px;
-    width:100%; padding:15px; margin-bottom:10px;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    width:100%; padding:11px; margin-bottom:0;
     border-radius:10px; text-decoration:none;
-    font-family:'Inter'; font-weight:600; font-size:14.5px;
+    font-family:'Inter'; font-weight:600; font-size:13px;
     border:1px solid var(--divider);
     background: linear-gradient(180deg, #1a1712, #131110);
     color: var(--brass-light);
@@ -205,22 +205,22 @@
     color: #17140f; border:none;
   }
   .connect-btn:hover{ transform: translateY(-1px); }
-  .connect-btn svg{ width:17px; height:17px; }
+  .connect-btn svg{ width:15px; height:15px; }
 
   .qr-card{
     background: var(--bg-soft); border:1px solid rgba(255,255,255,0.06);
-    border-radius:14px; padding:16px; text-align:center;
+    border-radius:14px; padding:10px; text-align:center;
   }
   .qr-frame{
-    background:#f4efe4; padding:12px; border-radius:8px; display:inline-block;
+    background:#f4efe4; padding:8px; border-radius:8px; display:inline-block;
     box-shadow: 0 8px 24px rgba(0,0,0,0.4);
   }
-  .qr-frame img{ display:block; width:120px; height:120px; }
-  .qr-caption{ font-size:12px; color:var(--text-muted); margin:10px 0 0; line-height:1.5; }
+  .qr-frame img{ display:block; width:84px; height:84px; }
+  .qr-caption{ font-size:10.5px; color:var(--text-muted); margin:6px 0 0; line-height:1.4; }
   .qr-caption b{ color:var(--brass-light); font-weight:500; }
 
   footer{
-    padding: 14px 24px 24px; text-align:center;
+    padding: 6px 24px 14px; text-align:center;
   }
   .footer-mark{ font-family:'JetBrains Mono', monospace; font-size:9.5px; letter-spacing:0.2em; color: var(--text-muted); text-transform:uppercase; }
   .footer-mark b{ color: var(--brass); }
@@ -272,7 +272,7 @@
     </button>
   </div>
 
-  <div class="divider" style="margin-top:14px;"></div>
+  <div class="divider" style="margin-top:8px;"></div>
 
   <section>
     <p class="kicker">Sobre mí</p>
@@ -299,7 +299,6 @@
     </div>
   </section>
 
-
   <section>
     <p class="kicker">Conecta conmigo</p>
     <a class="connect-btn primary" id="btnLinkedin" href="https://www.linkedin.com/in/tu-usuario" target="_blank" rel="noopener">
@@ -318,7 +317,6 @@
       </div>
       <p class="qr-caption">Escanea para abrir esta tarjeta en tu teléfono<br><b id="qrUrlLabel">tu-dominio.com/tarjeta</b></p>
     </div>
-    <div class="edit-note" style="margin-top:12px;">◻ Este QR apunta a un enlace de ejemplo. Sube este archivo a un hosting (ver instrucciones que te di en el chat) y cambia <b>profile.pageUrl</b> por tu URL real para que el QR funcione.</div>
   </section>
 
   <footer>
