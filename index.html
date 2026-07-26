@@ -6,7 +6,7 @@
 <title>Jean Paul Placencio Macías · Ingeniero Eléctrico</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg: #0a0a0b;
@@ -254,50 +254,52 @@
   /* ---------- PLANTILLA DE CV (oculta, solo para exportar a PDF) ---------- */
   #cvTemplate{
     position:fixed; top:0; left:-9999px;
-    width:794px; min-height:1123px;
-    background:#fbf9f5; color:#2b2620;
+    width:800px;
+    background:#ffffff; color:#262626;
     font-family:'Inter', sans-serif;
     display:flex;
   }
   .cv-sidebar{
-    width:250px; background:#171512; color:#efe9df;
+    width:270px; flex-shrink:0; background:#c7b4b2;
     padding:34px 24px; box-sizing:border-box;
-    display:flex; flex-direction:column; gap:24px;
   }
   .cv-photo{
-    width:130px; height:130px; border-radius:50%; object-fit:cover;
-    border:3px solid #e8ca97; margin:0 auto; display:block;
+    width:100%; aspect-ratio: 4 / 5; object-fit:cover; object-position: 50% 15%;
+    background:#fff; display:block; margin-bottom:18px;
   }
+  .cv-bio{ font-size:12.5px; line-height:1.55; color:#20202a; margin:0 0 4px; }
+  .cv-divider{ height:3px; background:#1e2233; margin:16px 0; border:none; }
   .cv-side-block h3{
-    font-family:'JetBrains Mono', monospace; font-size:10px;
-    letter-spacing:0.14em; text-transform:uppercase; color:#e8ca97;
-    margin:0 0 10px; padding-bottom:6px; border-bottom:1px solid rgba(232,202,151,0.25);
+    font-family:'Poppins','Inter',sans-serif; font-weight:700; font-size:13px;
+    letter-spacing:0.02em; text-transform:uppercase; color:#1e2233;
+    margin:0 0 10px; display:flex; align-items:center;
   }
-  .cv-side-block p{ font-size:11px; line-height:1.6; color:#d8d2c4; margin:0 0 7px; }
-  .cv-tag{
-    display:inline-block; font-size:9.5px; padding:4px 9px; margin:0 5px 5px 0;
-    border:1px solid rgba(232,202,151,0.35); border-radius:20px; color:#e8ca97;
-  }
-  .cv-main{ flex:1; padding:38px 36px; box-sizing:border-box; }
+  .cv-side-block p{ font-size:11.5px; line-height:1.55; color:#262626; margin:0 0 10px; }
+  .cv-side-block p:last-child{ margin-bottom:0; }
+  .cv-side-block b{ font-weight:700; }
+
+  .cv-main{ flex:1; padding:34px 34px 34px; box-sizing:border-box; min-width:0; }
+  .cv-header{ background:#f4cd46; margin:-34px -34px 0; padding:34px 34px 22px; }
   .cv-name{
-    font-family:'Fraunces', serif; font-weight:600; font-size:29px; margin:0 0 2px; color:#171512;
+    font-family:'Poppins','Inter',sans-serif; font-weight:800; font-size:33px;
+    letter-spacing:0.01em; color:#1e2233; margin:0; line-height:1.1;
   }
-  .cv-title{
-    font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.06em;
-    color:#895c12; text-transform:uppercase; margin:0 0 22px;
+  .cv-role{
+    font-family:'Poppins','Inter',sans-serif; font-weight:400; font-size:17px;
+    letter-spacing:0.3em; color:#1e2233; margin:8px 0 0;
   }
-  .cv-section{ margin-bottom:20px; }
+  .cv-divider-main{ margin:22px 0 18px; }
+  .cv-section{ margin-bottom:2px; }
   .cv-section h3{
-    font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:0.14em;
-    text-transform:uppercase; color:#895c12; margin:0 0 8px;
-    display:flex; align-items:center; gap:10px;
+    font-family:'Poppins','Inter',sans-serif; font-weight:700; font-size:14px;
+    letter-spacing:0.02em; text-transform:uppercase; color:#1e2233;
+    margin:0 0 12px; display:flex; align-items:center;
   }
-  .cv-section h3::after{ content:""; flex:1; height:1px; background:#e3dbc9; }
-  .cv-section p{ font-size:12px; line-height:1.6; color:#3a342b; margin:0 0 4px; }
-  .cv-item{ margin-bottom:11px; }
-  .cv-item:last-child{ margin-bottom:0; }
-  .cv-item-title{ font-size:12.5px; font-weight:600; color:#171512; margin:0; }
-  .cv-item-sub{ font-size:11px; color:#8a7a56; margin:1px 0 4px; }
+  .cv-section p{ font-size:12.5px; line-height:1.65; color:#262626; margin:0 0 12px; }
+  .cv-section p:last-child{ margin-bottom:0; }
+  .cv-section b{ font-weight:700; }
+  .cv-link{ color:#1a56db; }
+  .cv-icon{ width:16px; height:16px; display:inline-block; vertical-align:-3px; margin-right:8px; }
 </style>
 </head>
 <body>
@@ -436,68 +438,65 @@
 <div id="cvTemplate">
   <aside class="cv-sidebar">
     <img id="cvPhoto" class="cv-photo" src="" alt="Foto">
+    <p class="cv-bio">Disfruto trabajar en equipo, creo en la colaboración para lograr mejores resultados. Soy responsable y me comprometo plenamente en todo lo que hago.</p>
+
+    <hr class="cv-divider">
     <div class="cv-side-block">
-      <h3>Contacto</h3>
-      <p id="cvPhone"></p>
-      <p id="cvEmail"></p>
-      <p id="cvLinkedin"></p>
-      <p id="cvCity"></p>
+      <h3><svg class="cv-icon" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="7" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Contacto</h3>
+      <p><b>Celular:</b> +34 650 340 407</p>
+      <p><b>Correo:</b><br>jeanpaulplacencio@gmail.com</p>
+      <p><b>Dirección:</b> L'Hospitalet de Llobregat, Barcelona 08904</p>
     </div>
+
+    <hr class="cv-divider">
     <div class="cv-side-block">
-      <h3>Áreas de especialización</h3>
-      <div>
-        <span class="cv-tag">Instalaciones BT</span>
-        <span class="cv-tag">Mantenimiento</span>
-        <span class="cv-tag">Seguridad eléctrica</span>
-        <span class="cv-tag">Lectura de planos</span>
-        <span class="cv-tag">Oficina técnica</span>
-        <span class="cv-tag">Presupuestos</span>
-      </div>
+      <h3><svg class="cv-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5c-2-1.2-5-2-8-2v14c3 0 6 .8 8 2 2-1.2 5-2 8-2V3c-3 0-6 .8-8 2z"/></svg>Educación</h3>
+      <p><b>Universidad Técnica Estatal de Quevedo</b><br>• Ing. en electricidad, 2023</p>
+      <p><b>Secundaria "Unidad Educativa Los Guayacanes"</b><br>• Bachiller en electrónica, 2016</p>
     </div>
+
+    <hr class="cv-divider">
     <div class="cv-side-block">
-      <h3>Credencial</h3>
-      <p>Instalador eléctrico de baja tensión autorizado (España)</p>
+      <h3><svg class="cv-icon" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5 5 22l7-3.5L19 22l-3.5-9.5"/></svg>Certificaciones</h3>
+      <p><b>Formació específica en risc elèctric</b> — RD 614/2001 (24h)<br>Escola d'Oficis Catalunya · Barcelona, dic. 2024</p>
+      <p><b>Electricitat i Instal·lacions elèctriques</b> (120h)<br>Escola d'Oficis Catalunya · Barcelona, dic. 2024</p>
     </div>
   </aside>
+
   <main class="cv-main">
-    <h1 class="cv-name" id="cvName"></h1>
-    <p class="cv-title" id="cvTitle"></p>
-
-    <div class="cv-section">
-      <h3>Perfil profesional</h3>
-      <p id="cvBio"></p>
+    <div class="cv-header">
+      <h1 class="cv-name">JEAN PAUL PLACENCIO</h1>
+      <p class="cv-role">Ing. Eléctrico</p>
     </div>
 
+    <hr class="cv-divider cv-divider-main">
     <div class="cv-section">
-      <h3>Experiencia</h3>
-      <div class="cv-item">
-        <p class="cv-item-title">Fundador · Instalador Eléctrico</p>
-        <p class="cv-item-sub">PoLED Electric — Barcelona</p>
-        <p>Gestión integral de proyectos de instalaciones eléctricas de baja tensión: diseño, ejecución, mantenimiento y boletines de instalación, además de la dirección técnica y comercial de la empresa.</p>
-      </div>
+      <h3><svg class="cv-icon" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="8" width="20" height="12" rx="2"/><rect x="9" y="4" width="6" height="4" rx="1"/><rect x="2" y="12" width="20" height="2" opacity="0.4"/></svg>Experiencia laboral</h3>
+      <p><b>Asistente eléctrico</b> - Empresa AC SOLUTIONS, 2023<br>• Asistencia en instalaciones industriales eléctricas.<br>• Mantenimiento de máquinas eléctricas.</p>
+      <p><b>Pasante</b> - Empresa EMERGELEC, 2022<br>• Ayudante eléctrico</p>
     </div>
 
+    <hr class="cv-divider cv-divider-main">
     <div class="cv-section">
-      <h3>Formación académica</h3>
-      <div class="cv-item">
-        <p class="cv-item-title">Ingeniería Eléctrica</p>
-        <p class="cv-item-sub">Universidad Técnica Estatal de Quevedo (Ecuador) — Equivalencia oficial al nivel de Grado en España</p>
-      </div>
+      <h3><svg class="cv-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M5 2h10l4 4v16H5z"/><path d="M15 2v4h4z" opacity="0.45"/></svg>Publicaciones</h3>
+      <p><b>Artículo:</b> Auditoría Energética en las Instalaciones del Centro de Operaciones y Mantenimiento de Transporte (COMT)</p>
+      <p><b>DOI:</b> <span class="cv-link">https://doi.org/10.29166/ingenio.v6i1.4222</span><br><b>Publicado:</b> 2023-01-15</p>
     </div>
 
+    <hr class="cv-divider cv-divider-main">
     <div class="cv-section">
-      <h3>Certificaciones</h3>
-      <div class="cv-item">
-        <p class="cv-item-title">Formació específica en risc elèctric — RD 614/2001 (24h)</p>
-        <p class="cv-item-sub">Escola d'Oficis Catalunya · Barcelona, dic. 2024</p>
-      </div>
-      <div class="cv-item">
-        <p class="cv-item-title">Electricitat i Instal·lacions elèctriques (120h)</p>
-        <p class="cv-item-sub">Escola d'Oficis Catalunya · Barcelona, dic. 2024</p>
-      </div>
+      <h3><svg class="cv-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z"/><rect x="9" y="19" width="6" height="2" rx="1"/><rect x="10" y="22" width="4" height="1.4" rx="0.7"/></svg>Habilidades</h3>
+      <p>• Manejo de Office 365, Matlab y Python<br>• Conocimiento de AutoCAD, DIAlux y Power Factory<br>• Realización de informes técnicos</p>
+    </div>
+
+    <hr class="cv-divider cv-divider-main">
+    <div class="cv-section">
+      <h3><svg class="cv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><line x1="3" y1="12" x2="21" y2="12"/></svg>Idiomas</h3>
+      <p>• Español<br>• Inglés (Básico)</p>
     </div>
   </main>
 </div>
+
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -532,15 +531,8 @@
   // El QR ahora está incrustado directamente como imagen fija en el HTML (ver arriba),
   // ya no depende de ninguna librería ni API externa.
 
-  // --- Rellenar la plantilla oculta del CV con los mismos datos del perfil ---
+  // --- El contenido del CV es fijo (ver plantilla arriba); solo se inserta la foto ---
   document.getElementById('cvPhoto').src = document.querySelector('.hero img').src;
-  document.getElementById('cvName').textContent = profile.fullName;
-  document.getElementById('cvTitle').textContent = profile.title + ' · Instalador Eléctrico de Baja Tensión Autorizado';
-  document.getElementById('cvBio').textContent = profile.bio;
-  document.getElementById('cvPhone').textContent = 'Teléfono: ' + profile.phone;
-  document.getElementById('cvEmail').textContent = 'Email: ' + profile.email;
-  document.getElementById('cvLinkedin').textContent = 'LinkedIn: /' + profile.linkedin.split('/').filter(Boolean).pop();
-  document.getElementById('cvCity').textContent = 'Ubicación: ' + profile.city;
 
   // --- Descargar vCard (.vcf) para Contactos / Apple Wallet-compatible ---
   function downloadVCard(){
@@ -584,29 +576,21 @@
     html2canvas(document.getElementById('cvTemplate'), {
       scale: 2,
       useCORS: true,
-      backgroundColor: '#fbf9f5'
+      backgroundColor: '#ffffff'
     }).then(function(canvas){
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pageWidth = pdf.internal.pageSize.getWidth();
       const pageHeight = pdf.internal.pageSize.getHeight();
-      const imgWidth = pageWidth;
-      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+      // Escalamos el contenido para que quepa siempre en una sola página (sin páginas extra en blanco)
+      const ratio = Math.min(pageWidth / canvas.width, pageHeight / canvas.height);
+      const imgWidth = canvas.width * ratio;
+      const imgHeight = canvas.height * ratio;
+      const x = (pageWidth - imgWidth) / 2;
+      const y = 0;
       const imgData = canvas.toDataURL('image/jpeg', 0.95);
 
-      if (imgHeight <= pageHeight) {
-        pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
-      } else {
-        let heightLeft = imgHeight;
-        let position = 0;
-        pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-        while (heightLeft > 0) {
-          position = heightLeft - imgHeight;
-          pdf.addPage();
-          pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
-          heightLeft -= pageHeight;
-        }
-      }
+      pdf.addImage(imgData, 'JPEG', x, y, imgWidth, imgHeight);
 
       pdf.save(profile.fullName.replace(/\s+/g,'_') + '_CV.pdf');
       label.textContent = original;
