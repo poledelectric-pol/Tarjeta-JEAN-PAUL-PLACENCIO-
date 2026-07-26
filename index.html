@@ -224,7 +224,7 @@
     background:#f4efe4; padding:8px; border-radius:8px; display:inline-block;
     box-shadow: 0 8px 24px rgba(0,0,0,0.4);
   }
-  .qr-frame img{ display:block; width:84px; height:84px; }
+  .qr-frame img, .qr-frame canvas{ display:block; width:84px; height:84px; }
   .qr-caption{ font-size:10.5px; color:var(--text-muted); margin:6px 0 0; line-height:1.4; }
   .qr-caption b{ color:var(--brass-light); font-weight:500; }
 
@@ -326,9 +326,7 @@
   <section>
     <p class="kicker">Comparte esta tarjeta</p>
     <div class="qr-card">
-      <div class="qr-frame">
-        <img id="qrImg" src="" alt="Código QR">
-      </div>
+      <div class="qr-frame" id="qrFrame" role="img" aria-label="Código QR"></div>
       <p class="qr-caption">Escanea para abrir esta tarjeta en tu teléfono<br><a id="qrUrlLabel" href="#" style="color:var(--brass-light); font-weight:500; text-decoration:none;">tu-dominio.com/tarjeta</a></p>
     </div>
   </section>
@@ -338,6 +336,7 @@
   </footer>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
   // ============================================
   // ◻ EDITA TUS DATOS AQUÍ — un solo lugar
@@ -366,7 +365,23 @@
   document.getElementById('btnEmail').href = 'mailto:' + profile.email;
   document.getElementById('btnLinkedin').href = profile.linkedin;
   document.getElementById('qrUrlLabel').textContent = profile.pageUrl.replace(/^https?:\/\//,'');
-  document.getElementById('qrImg').src = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=8&data=' + encodeURIComponent(profile.pageUrl);
+
+  // --- Generar QR localmente en el navegador (no depende de una API externa) ---
+  const qrFrame = document.getElementById('qrFrame');
+  if (typeof QRCode !== 'undefined') {
+    new QRCode(qrFrame, {
+      text: profile.pageUrl,
+      width: 168,
+      height: 168,
+      colorDark: '#171512',
+      colorLight: '#f4efe4',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  } else {
+    // Respaldo por si el CDN de la librería no cargara
+    qrFrame.innerHTML = '<img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=8&data='
+      + encodeURIComponent(profile.pageUrl) + '" alt="Código QR" style="width:84px;height:84px;display:block;">';
+  }
 
   // --- Descargar vCard (.vcf) para Contactos / Apple Wallet-compatible ---
   function downloadVCard(){
