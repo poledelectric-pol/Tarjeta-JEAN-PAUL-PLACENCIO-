@@ -258,6 +258,7 @@
       <span class="screw tl"></span><span class="screw tr"></span>
       <span class="screw bl"></span><span class="screw br"></span>
       <p class="plate-title" id="plateTitle">Ingeniero Eléctrico</p>
+      <p class="plate-sub" id="plateSub"></p>
     </div>
   </div>
 
@@ -326,7 +327,7 @@
   <section>
     <p class="kicker">Comparte esta tarjeta</p>
     <div class="qr-card">
-      <div class="qr-frame" id="qrFrame" role="img" aria-label="Código QR"></div>
+      <div class="qr-frame"><img id="qrImg" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsAQMAAABDsxw2AAAABlBMVEX///8AAABVwtN+AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACW0lEQVRoge2aMXKDQAxFxVBQcgSOwtHgaByFI1BSMFak/7UYOyQz2bjUFpms99mFJH99LRbJVbeUa5PuwH6aZbSdb5vzLLHvGA6Hrdej1Ydzy7j2utt/TTlL7B/YpLrav52SsrCv0qt6FjxHS2K/YR7eh5BbrXj39pHY5zCR9jA1sN0ig0vCD8lK7I9YiMPeUm3ncRErcmbhu4YkFlj0Jceah+gMUd1YvZeelVgVdl2o3lmQhHAIdysxifCu/J4jvP6ihVe9hSk6f2L1GLjwAFgTC7ZTisMY1ZtYFcayHnTr6FStZ9Gptq/JSqx9K0uT0QHxdSpE1R1+g613sMSqMZinAfNpy0EAr4c4qJYPS+wV80l+1LWHqPoXHrWsYUFFOOUnVon5wYgBSsOpyui1vJfon60tsRoMgT6zAO1VvMl3drZIYncYy9UcPmTU5WBEq6c4zGcWEqvC4p7E53r/G3O9DQLIwrSMxUoldsXo6THX62ml8K53K5VYBYZIY2SCJXCJxZQvvNu7aEhiFZhwZEIWTsfVe103V3FI7A2jqK520NJKQRzcuL5qSGJ1WKjt1tFKzTAIWxdW6jLGJvaKwUqZ6QQVB9754fBjnkqsHqM4OIbbPH8TrFSp5S2xaqysvkxME8WBPcuvTRK7wyKKzwfx6O79zltQ7/yrJFaPIfRDeV7PgrXxdGcW8BGJ3WFTPIjn7xyKIXXDrzQCiX0EO2/z3Kl2R0z5iX0GO4SOSyILeLTkOZHE7jBfA6+blOZpsLDG9uq4EqvAuFi9+J0D1Tak+DmfJlaD5apZXyV63VG6jNQsAAAAAElFTkSuQmCC" alt="Código QR"></div>
       <p class="qr-caption">Escanea para abrir esta tarjeta en tu teléfono<br><a id="qrUrlLabel" href="#" style="color:var(--brass-light); font-weight:500; text-decoration:none;">tu-dominio.com/tarjeta</a></p>
     </div>
   </section>
@@ -336,7 +337,6 @@
   </footer>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
   // ============================================
   // ◻ EDITA TUS DATOS AQUÍ — un solo lugar
@@ -365,23 +365,8 @@
   document.getElementById('btnEmail').href = 'mailto:' + profile.email;
   document.getElementById('btnLinkedin').href = profile.linkedin;
   document.getElementById('qrUrlLabel').textContent = profile.pageUrl.replace(/^https?:\/\//,'');
-
-  // --- Generar QR localmente en el navegador (no depende de una API externa) ---
-  const qrFrame = document.getElementById('qrFrame');
-  if (typeof QRCode !== 'undefined') {
-    new QRCode(qrFrame, {
-      text: profile.pageUrl,
-      width: 168,
-      height: 168,
-      colorDark: '#171512',
-      colorLight: '#f4efe4',
-      correctLevel: QRCode.CorrectLevel.M
-    });
-  } else {
-    // Respaldo por si el CDN de la librería no cargara
-    qrFrame.innerHTML = '<img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&margin=8&data='
-      + encodeURIComponent(profile.pageUrl) + '" alt="Código QR" style="width:84px;height:84px;display:block;">';
-  }
+  // El QR ahora está incrustado directamente como imagen fija en el HTML (ver arriba),
+  // ya no depende de ninguna librería ni API externa.
 
   // --- Descargar vCard (.vcf) para Contactos / Apple Wallet-compatible ---
   function downloadVCard(){
