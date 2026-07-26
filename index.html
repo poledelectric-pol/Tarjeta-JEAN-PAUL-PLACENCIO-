@@ -140,8 +140,8 @@
 
   /* ---------- ACTIONS ---------- */
   .actions{
-    display:grid; grid-template-columns: repeat(4,1fr);
-    gap:8px;
+    display:grid; grid-template-columns: repeat(5,1fr);
+    gap:6px;
     padding: 10px 20px 2px;
   }
   .action{
@@ -199,6 +199,17 @@
   .cert-icon svg{ width:100%; height:100%; display:block; }
   .cred-date{ font-size:9.5px; color:var(--text-muted); opacity:0.75; margin:1px 0 0; }
 
+  .skills-grid{
+    display:grid; grid-template-columns: 1fr 1fr; gap:8px;
+  }
+  .skill-chip{
+    display:flex; align-items:center; gap:8px;
+    background: var(--bg-soft); border:1px solid rgba(255,255,255,0.06);
+    border-radius:10px; padding:9px 10px;
+  }
+  .skill-chip svg{ width:16px; height:16px; color: var(--brass-light); flex-shrink:0; }
+  .skill-chip span{ font-size:11px; line-height:1.25; color:var(--text); }
+
   .connect-btn{
     display:flex; align-items:center; justify-content:center; gap:8px;
     width:100%; padding:11px; margin-bottom:0;
@@ -239,6 +250,54 @@
     background: rgba(179,145,92,0.08); border:1px dashed rgba(179,145,92,0.3);
     padding:8px 10px; border-radius:6px; margin-top:6px; line-height:1.5;
   }
+
+  /* ---------- PLANTILLA DE CV (oculta, solo para exportar a PDF) ---------- */
+  #cvTemplate{
+    position:fixed; top:0; left:-9999px;
+    width:794px; min-height:1123px;
+    background:#fbf9f5; color:#2b2620;
+    font-family:'Inter', sans-serif;
+    display:flex;
+  }
+  .cv-sidebar{
+    width:250px; background:#171512; color:#efe9df;
+    padding:34px 24px; box-sizing:border-box;
+    display:flex; flex-direction:column; gap:24px;
+  }
+  .cv-photo{
+    width:130px; height:130px; border-radius:50%; object-fit:cover;
+    border:3px solid #e8ca97; margin:0 auto; display:block;
+  }
+  .cv-side-block h3{
+    font-family:'JetBrains Mono', monospace; font-size:10px;
+    letter-spacing:0.14em; text-transform:uppercase; color:#e8ca97;
+    margin:0 0 10px; padding-bottom:6px; border-bottom:1px solid rgba(232,202,151,0.25);
+  }
+  .cv-side-block p{ font-size:11px; line-height:1.6; color:#d8d2c4; margin:0 0 7px; }
+  .cv-tag{
+    display:inline-block; font-size:9.5px; padding:4px 9px; margin:0 5px 5px 0;
+    border:1px solid rgba(232,202,151,0.35); border-radius:20px; color:#e8ca97;
+  }
+  .cv-main{ flex:1; padding:38px 36px; box-sizing:border-box; }
+  .cv-name{
+    font-family:'Fraunces', serif; font-weight:600; font-size:29px; margin:0 0 2px; color:#171512;
+  }
+  .cv-title{
+    font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.06em;
+    color:#895c12; text-transform:uppercase; margin:0 0 22px;
+  }
+  .cv-section{ margin-bottom:20px; }
+  .cv-section h3{
+    font-family:'JetBrains Mono', monospace; font-size:10.5px; letter-spacing:0.14em;
+    text-transform:uppercase; color:#895c12; margin:0 0 8px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .cv-section h3::after{ content:""; flex:1; height:1px; background:#e3dbc9; }
+  .cv-section p{ font-size:12px; line-height:1.6; color:#3a342b; margin:0 0 4px; }
+  .cv-item{ margin-bottom:11px; }
+  .cv-item:last-child{ margin-bottom:0; }
+  .cv-item-title{ font-size:12.5px; font-weight:600; color:#171512; margin:0; }
+  .cv-item-sub{ font-size:11px; color:#8a7a56; margin:1px 0 4px; }
 </style>
 </head>
 <body>
@@ -279,6 +338,10 @@
       <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
       <span>Guardar</span>
     </button>
+    <button class="action" id="btnCV" onclick="downloadCV()">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      <span>CV</span>
+    </button>
   </div>
 
   <div class="divider" style="margin-top:8px;"></div>
@@ -314,6 +377,38 @@
     </div>
   </section>
 
+  <div class="divider"></div>
+
+  <section>
+    <p class="kicker">Áreas de especialización</p>
+    <div class="skills-grid">
+      <div class="skill-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        <span>Instalaciones eléctricas de baja tensión</span>
+      </div>
+      <div class="skill-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/></svg>
+        <span>Mantenimiento eléctrico</span>
+      </div>
+      <div class="skill-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Seguridad eléctrica</span>
+      </div>
+      <div class="skill-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        <span>Interpretación de planos</span>
+      </div>
+      <div class="skill-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        <span>Oficina técnica</span>
+      </div>
+      <div class="skill-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="7" x2="16" y2="7"/><line x1="8" y1="12" x2="8.01" y2="12"/><line x1="12" y1="12" x2="12.01" y2="12"/><line x1="16" y1="12" x2="16.01" y2="12"/><line x1="8" y1="16" x2="8.01" y2="16"/><line x1="12" y1="16" x2="12.01" y2="16"/><line x1="16" y1="16" x2="16.01" y2="16"/></svg>
+        <span>Presupuestos y mediciones</span>
+      </div>
+    </div>
+  </section>
+
   <section>
     <p class="kicker">Conecta conmigo</p>
     <a class="connect-btn primary" id="btnLinkedin" href="https://www.linkedin.com/in/tu-usuario" target="_blank" rel="noopener">
@@ -337,6 +432,75 @@
   </footer>
 </div>
 
+<!-- Plantilla oculta usada únicamente para generar el PDF del CV -->
+<div id="cvTemplate">
+  <aside class="cv-sidebar">
+    <img id="cvPhoto" class="cv-photo" src="" alt="Foto">
+    <div class="cv-side-block">
+      <h3>Contacto</h3>
+      <p id="cvPhone"></p>
+      <p id="cvEmail"></p>
+      <p id="cvLinkedin"></p>
+      <p id="cvCity"></p>
+    </div>
+    <div class="cv-side-block">
+      <h3>Áreas de especialización</h3>
+      <div>
+        <span class="cv-tag">Instalaciones BT</span>
+        <span class="cv-tag">Mantenimiento</span>
+        <span class="cv-tag">Seguridad eléctrica</span>
+        <span class="cv-tag">Lectura de planos</span>
+        <span class="cv-tag">Oficina técnica</span>
+        <span class="cv-tag">Presupuestos</span>
+      </div>
+    </div>
+    <div class="cv-side-block">
+      <h3>Credencial</h3>
+      <p>Instalador eléctrico de baja tensión autorizado (España)</p>
+    </div>
+  </aside>
+  <main class="cv-main">
+    <h1 class="cv-name" id="cvName"></h1>
+    <p class="cv-title" id="cvTitle"></p>
+
+    <div class="cv-section">
+      <h3>Perfil profesional</h3>
+      <p id="cvBio"></p>
+    </div>
+
+    <div class="cv-section">
+      <h3>Experiencia</h3>
+      <div class="cv-item">
+        <p class="cv-item-title">Fundador · Instalador Eléctrico</p>
+        <p class="cv-item-sub">PoLED Electric — Barcelona</p>
+        <p>Gestión integral de proyectos de instalaciones eléctricas de baja tensión: diseño, ejecución, mantenimiento y boletines de instalación, además de la dirección técnica y comercial de la empresa.</p>
+      </div>
+    </div>
+
+    <div class="cv-section">
+      <h3>Formación académica</h3>
+      <div class="cv-item">
+        <p class="cv-item-title">Ingeniería Eléctrica</p>
+        <p class="cv-item-sub">Universidad Técnica Estatal de Quevedo (Ecuador) — Equivalencia oficial al nivel de Grado en España</p>
+      </div>
+    </div>
+
+    <div class="cv-section">
+      <h3>Certificaciones</h3>
+      <div class="cv-item">
+        <p class="cv-item-title">Formació específica en risc elèctric — RD 614/2001 (24h)</p>
+        <p class="cv-item-sub">Escola d'Oficis Catalunya · Barcelona, dic. 2024</p>
+      </div>
+      <div class="cv-item">
+        <p class="cv-item-title">Electricitat i Instal·lacions elèctriques (120h)</p>
+        <p class="cv-item-sub">Escola d'Oficis Catalunya · Barcelona, dic. 2024</p>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
   // ============================================
   // ◻ EDITA TUS DATOS AQUÍ — un solo lugar
@@ -368,6 +532,16 @@
   // El QR ahora está incrustado directamente como imagen fija en el HTML (ver arriba),
   // ya no depende de ninguna librería ni API externa.
 
+  // --- Rellenar la plantilla oculta del CV con los mismos datos del perfil ---
+  document.getElementById('cvPhoto').src = document.querySelector('.hero img').src;
+  document.getElementById('cvName').textContent = profile.fullName;
+  document.getElementById('cvTitle').textContent = profile.title + ' · Instalador Eléctrico de Baja Tensión Autorizado';
+  document.getElementById('cvBio').textContent = profile.bio;
+  document.getElementById('cvPhone').textContent = 'Teléfono: ' + profile.phone;
+  document.getElementById('cvEmail').textContent = 'Email: ' + profile.email;
+  document.getElementById('cvLinkedin').textContent = 'LinkedIn: /' + profile.linkedin.split('/').filter(Boolean).pop();
+  document.getElementById('cvCity').textContent = 'Ubicación: ' + profile.city;
+
   // --- Descargar vCard (.vcf) para Contactos / Apple Wallet-compatible ---
   function downloadVCard(){
     const [firstName, ...rest] = profile.fullName.split(' ');
@@ -391,6 +565,56 @@
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  }
+
+  // --- Generar y descargar el CV en PDF a partir de la plantilla oculta ---
+  function downloadCV(){
+    const btn = document.getElementById('btnCV');
+    const label = btn.querySelector('span');
+    const original = label.textContent;
+
+    if (typeof html2canvas === 'undefined' || typeof window.jspdf === 'undefined') {
+      alert('No se pudo cargar el generador de PDF. Revisa tu conexión e inténtalo de nuevo.');
+      return;
+    }
+
+    label.textContent = '...';
+    const { jsPDF } = window.jspdf;
+
+    html2canvas(document.getElementById('cvTemplate'), {
+      scale: 2,
+      useCORS: true,
+      backgroundColor: '#fbf9f5'
+    }).then(function(canvas){
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+      const imgWidth = pageWidth;
+      const imgHeight = (canvas.height * imgWidth) / canvas.width;
+      const imgData = canvas.toDataURL('image/jpeg', 0.95);
+
+      if (imgHeight <= pageHeight) {
+        pdf.addImage(imgData, 'JPEG', 0, 0, imgWidth, imgHeight);
+      } else {
+        let heightLeft = imgHeight;
+        let position = 0;
+        pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+        while (heightLeft > 0) {
+          position = heightLeft - imgHeight;
+          pdf.addPage();
+          pdf.addImage(imgData, 'JPEG', 0, position, imgWidth, imgHeight);
+          heightLeft -= pageHeight;
+        }
+      }
+
+      pdf.save(profile.fullName.replace(/\s+/g,'_') + '_CV.pdf');
+      label.textContent = original;
+    }).catch(function(err){
+      console.error(err);
+      label.textContent = original;
+      alert('No se pudo generar el CV. Inténtalo de nuevo.');
+    });
   }
 </script>
 </body>
