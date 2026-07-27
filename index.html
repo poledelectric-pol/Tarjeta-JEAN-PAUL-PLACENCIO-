@@ -252,54 +252,94 @@
   }
 
   /* ---------- PLANTILLA DE CV (oculta, solo para exportar a PDF) ---------- */
+  /* Usa la misma paleta y estilo que la tarjeta web: fondo oscuro, acentos brass, tipografía JetBrains Mono/Fraunces */
+  /* NOTA: aquí usamos valores de color literales (no var()) porque el generador de PDF
+     no siempre resuelve bien las variables CSS dentro de degradados. */
+  /* Tamaño fijo A4 (794x1123px @ 96dpi, misma proporción que una hoja A4 real) para que el PDF
+     ocupe la hoja completa sin dejar espacios en blanco. */
   #cvTemplate{
-    position:fixed; top:0; left:-9999px;
-    width:800px;
-    background:#ffffff; color:#262626;
+    position:absolute; top:0; left:-9999px;
+    width:794px; height:1123px; overflow:hidden;
+    background: #0a0a0b;
+    color: #efe9df;
     font-family:'Inter', sans-serif;
     display:flex;
   }
   .cv-sidebar{
-    width:270px; flex-shrink:0; background:#c7b4b2;
-    padding:34px 24px; box-sizing:border-box;
+    width:270px; flex-shrink:0; height:100%; box-sizing:border-box;
+    background: #1a1712;
+    border-right:1px solid #221f1a;
+    padding:34px 24px;
+    display:flex; flex-direction:column; justify-content:space-between;
   }
   .cv-photo{
-    width:100%; aspect-ratio: 4 / 5; object-fit:cover; object-position: 50% 15%;
-    background:#fff; display:block; margin-bottom:18px;
+    width:100%; aspect-ratio: 1 / 1; object-fit:cover; object-position: 50% 18%;
+    background: #171512; display:block; margin-bottom:18px;
+    border:2px solid #e8ca97;
   }
-  .cv-bio{ font-size:12.5px; line-height:1.55; color:#20202a; margin:0 0 4px; }
-  .cv-divider{ height:3px; background:#1e2233; margin:16px 0; border:none; }
+  .cv-bio{
+    font-family:'Fraunces', serif; font-style:italic; font-weight:400;
+    font-size:14px; line-height:1.55; color:#ddd6c9; margin:0;
+  }
+  .cv-side-block.cv-side-first{ padding-top:0; }
+  .cv-side-block:not(.cv-side-first){
+    border-top:1px solid rgba(179,145,92,0.28); padding-top:16px;
+  }
   .cv-side-block h3{
-    font-family:'Poppins','Inter',sans-serif; font-weight:700; font-size:13px;
-    letter-spacing:0.02em; text-transform:uppercase; color:#1e2233;
-    margin:0 0 10px; display:flex; align-items:center;
+    font-family:'JetBrains Mono', monospace; font-weight:600; font-size:11.5px;
+    letter-spacing:0.16em; text-transform:uppercase; color: #895c12;
+    margin:0 0 10px; display:flex; align-items:center; gap:8px;
   }
-  .cv-side-block p{ font-size:11.5px; line-height:1.55; color:#262626; margin:0 0 10px; }
+  .cv-side-block p{ font-size:13px; line-height:1.6; color:#d8d2c4; margin:0 0 10px; }
   .cv-side-block p:last-child{ margin-bottom:0; }
-  .cv-side-block b{ font-weight:700; }
+  .cv-side-block b{ font-weight:600; color: #efe9df; }
 
-  .cv-main{ flex:1; padding:34px 34px 34px; box-sizing:border-box; min-width:0; }
-  .cv-header{ background:#f4cd46; margin:-34px -34px 0; padding:34px 34px 22px; }
+  .cv-main{
+    flex:1; height:100%; box-sizing:border-box; min-width:0;
+    background: #0a0a0b; padding:34px;
+    display:flex; flex-direction:column; justify-content:space-between;
+  }
+
+  .cv-header{
+    background: #1a1712;
+    border:1px solid #221f1a; border-radius:6px;
+    padding:24px 26px; position:relative;
+    box-shadow: 0 10px 22px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.03);
+  }
+  .cv-header::before{
+    content:""; position:absolute; inset:5px;
+    border:1px solid rgba(179,145,92,0.22); border-radius:4px; pointer-events:none;
+  }
+  .cv-screw{
+    position:absolute; width:5px; height:5px; border-radius:50%;
+    background: #b3915c;
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.5);
+  }
+  .cv-screw.tl{ top:8px; left:8px; } .cv-screw.tr{ top:8px; right:8px; }
+  .cv-screw.bl{ bottom:8px; left:8px; } .cv-screw.br{ bottom:8px; right:8px; }
   .cv-name{
-    font-family:'Poppins','Inter',sans-serif; font-weight:800; font-size:33px;
-    letter-spacing:0.01em; color:#1e2233; margin:0; line-height:1.1;
+    font-family:'JetBrains Mono', monospace; font-weight:600; font-size:24px;
+    letter-spacing:0.09em; text-transform:uppercase; color: #e8ca97;
+    margin:0; text-align:center;
   }
   .cv-role{
-    font-family:'Poppins','Inter',sans-serif; font-weight:400; font-size:17px;
-    letter-spacing:0.3em; color:#1e2233; margin:8px 0 0;
+    font-family:'JetBrains Mono', monospace; font-weight:400; font-size:12px;
+    letter-spacing:0.14em; color: #9c9488; margin:6px 0 0; text-align:center;
   }
-  .cv-divider-main{ margin:22px 0 18px; }
-  .cv-section{ margin-bottom:2px; }
+  .cv-section{
+    border-top:1px solid rgba(179,145,92,0.28); padding-top:18px;
+  }
   .cv-section h3{
-    font-family:'Poppins','Inter',sans-serif; font-weight:700; font-size:14px;
-    letter-spacing:0.02em; text-transform:uppercase; color:#1e2233;
-    margin:0 0 12px; display:flex; align-items:center;
+    font-family:'JetBrains Mono', monospace; font-weight:600; font-size:12.5px;
+    letter-spacing:0.16em; text-transform:uppercase; color: #895c12;
+    margin:0 0 12px; display:flex; align-items:center; gap:10px;
   }
-  .cv-section p{ font-size:12.5px; line-height:1.65; color:#262626; margin:0 0 12px; }
+  .cv-section h3::after{ content:""; flex:1; height:1px; background: rgba(179,145,92,0.28); }
+  .cv-section p{ font-size:13.5px; line-height:1.65; color:#d8d2c4; margin:0 0 12px; }
   .cv-section p:last-child{ margin-bottom:0; }
-  .cv-section b{ font-weight:700; }
-  .cv-link{ color:#1a56db; }
-  .cv-icon{ width:16px; height:16px; display:inline-block; vertical-align:-3px; margin-right:8px; }
+  .cv-section b{ font-weight:600; color: #efe9df; }
+  .cv-link{ color: #e8ca97; }
+  .cv-icon{ width:17px; height:17px; display:inline-block; vertical-align:-3px; }
 </style>
 </head>
 <body>
@@ -437,27 +477,26 @@
 <!-- Plantilla oculta usada únicamente para generar el PDF del CV -->
 <div id="cvTemplate">
   <aside class="cv-sidebar">
-    <img id="cvPhoto" class="cv-photo" src="" alt="Foto">
-    <p class="cv-bio">Disfruto trabajar en equipo, creo en la colaboración para lograr mejores resultados. Soy responsable y me comprometo plenamente en todo lo que hago.</p>
-
-    <hr class="cv-divider">
-    <div class="cv-side-block">
-      <h3><svg class="cv-icon" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="7" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Contacto</h3>
-      <p><b>Celular:</b> +34 650 340 407</p>
-      <p><b>Correo:</b><br>jeanpaulplacencio@gmail.com</p>
-      <p><b>Dirección:</b> L'Hospitalet de Llobregat, Barcelona 08904</p>
+    <div class="cv-side-block cv-side-first">
+      <img id="cvPhoto" class="cv-photo" src="" alt="Foto">
+      <p class="cv-bio">Disfruto trabajar en equipo, creo en la colaboración para lograr mejores resultados. Soy responsable y me comprometo plenamente en todo lo que hago.</p>
     </div>
 
-    <hr class="cv-divider">
     <div class="cv-side-block">
-      <h3><svg class="cv-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5c-2-1.2-5-2-8-2v14c3 0 6 .8 8 2 2-1.2 5-2 8-2V3c-3 0-6 .8-8 2z"/></svg>Educación</h3>
+      <h3><svg class="cv-icon" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="7" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>Contacto</h3>
+      <p><b>Celular:</b> +34 650 340 407</p>
+      <p><b>Correo:</b><br>jeanpaulplacencio@gmail.com</p>
+      <p><b>Dirección:</b> Barcelona, Nou Barris 08042</p>
+    </div>
+
+    <div class="cv-side-block">
+      <h3><svg class="cv-icon" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 5c-2-1.2-5-2-8-2v14c3 0 6 .8 8 2 2-1.2 5-2 8-2V3c-3 0-6 .8-8 2z"/></svg>Educación</h3>
       <p><b>Universidad Técnica Estatal de Quevedo</b><br>• Ing. en electricidad, 2023</p>
       <p><b>Secundaria "Unidad Educativa Los Guayacanes"</b><br>• Bachiller en electrónica, 2016</p>
     </div>
 
-    <hr class="cv-divider">
     <div class="cv-side-block">
-      <h3><svg class="cv-icon" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5 5 22l7-3.5L19 22l-3.5-9.5"/></svg>Certificaciones</h3>
+      <h3><svg class="cv-icon" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5 5 22l7-3.5L19 22l-3.5-9.5"/></svg>Certificaciones</h3>
       <p><b>Formació específica en risc elèctric</b> — RD 614/2001 (24h)<br>Escola d'Oficis Catalunya · Barcelona, dic. 2024</p>
       <p><b>Electricitat i Instal·lacions elèctriques</b> (120h)<br>Escola d'Oficis Catalunya · Barcelona, dic. 2024</p>
     </div>
@@ -465,33 +504,32 @@
 
   <main class="cv-main">
     <div class="cv-header">
+      <span class="cv-screw tl"></span><span class="cv-screw tr"></span>
+      <span class="cv-screw bl"></span><span class="cv-screw br"></span>
       <h1 class="cv-name">JEAN PAUL PLACENCIO</h1>
       <p class="cv-role">Ing. Eléctrico</p>
     </div>
 
-    <hr class="cv-divider cv-divider-main">
     <div class="cv-section">
-      <h3><svg class="cv-icon" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="8" width="20" height="12" rx="2"/><rect x="9" y="4" width="6" height="4" rx="1"/><rect x="2" y="12" width="20" height="2" opacity="0.4"/></svg>Experiencia laboral</h3>
+      <h3><svg class="cv-icon" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="8" width="20" height="12" rx="2"/><rect x="9" y="4" width="6" height="4" rx="1"/><rect x="2" y="12" width="20" height="2" opacity="0.4"/></svg>Experiencia laboral</h3>
+      <p><b>Electricista</b> - Empresa Villarobles S.L, 2023-2026</p>
       <p><b>Asistente eléctrico</b> - Empresa AC SOLUTIONS, 2023<br>• Asistencia en instalaciones industriales eléctricas.<br>• Mantenimiento de máquinas eléctricas.</p>
       <p><b>Pasante</b> - Empresa EMERGELEC, 2022<br>• Ayudante eléctrico</p>
     </div>
 
-    <hr class="cv-divider cv-divider-main">
     <div class="cv-section">
-      <h3><svg class="cv-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M5 2h10l4 4v16H5z"/><path d="M15 2v4h4z" opacity="0.45"/></svg>Publicaciones</h3>
+      <h3><svg class="cv-icon" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M5 2h10l4 4v16H5z"/><path d="M15 2v4h4z" opacity="0.45"/></svg>Publicaciones</h3>
       <p><b>Artículo:</b> Auditoría Energética en las Instalaciones del Centro de Operaciones y Mantenimiento de Transporte (COMT)</p>
       <p><b>DOI:</b> <span class="cv-link">https://doi.org/10.29166/ingenio.v6i1.4222</span><br><b>Publicado:</b> 2023-01-15</p>
     </div>
 
-    <hr class="cv-divider cv-divider-main">
     <div class="cv-section">
-      <h3><svg class="cv-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z"/><rect x="9" y="19" width="6" height="2" rx="1"/><rect x="10" y="22" width="4" height="1.4" rx="0.7"/></svg>Habilidades</h3>
+      <h3><svg class="cv-icon" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z"/><rect x="9" y="19" width="6" height="2" rx="1"/><rect x="10" y="22" width="4" height="1.4" rx="0.7"/></svg>Habilidades</h3>
       <p>• Manejo de Office 365, Matlab y Python<br>• Conocimiento de AutoCAD, DIAlux y Power Factory<br>• Realización de informes técnicos</p>
     </div>
 
-    <hr class="cv-divider cv-divider-main">
     <div class="cv-section">
-      <h3><svg class="cv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><line x1="3" y1="12" x2="21" y2="12"/></svg>Idiomas</h3>
+      <h3><svg class="cv-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><line x1="3" y1="12" x2="21" y2="12"/></svg>Idiomas</h3>
       <p>• Español<br>• Inglés (Básico)</p>
     </div>
   </main>
@@ -573,31 +611,39 @@
     label.textContent = '...';
     const { jsPDF } = window.jspdf;
 
-    html2canvas(document.getElementById('cvTemplate'), {
-      scale: 2,
-      useCORS: true,
-      backgroundColor: '#ffffff'
+    // Nos aseguramos de que la foto haya terminado de decodificarse antes de capturar el CV;
+    // si no, html2canvas puede toparse con un elemento de tamaño 0 y fallar.
+    const cvPhoto = document.getElementById('cvPhoto');
+    const photoReady = (cvPhoto.complete && cvPhoto.naturalWidth > 0)
+      ? Promise.resolve()
+      : new Promise(function(resolve){
+          cvPhoto.onload = resolve;
+          cvPhoto.onerror = resolve;
+        });
+
+    photoReady.then(function(){
+      return html2canvas(document.getElementById('cvTemplate'), {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: '#0a0a0b',
+        foreignObjectRendering: false
+      });
     }).then(function(canvas){
       const pdf = new jsPDF('p', 'mm', 'a4');
       const pageWidth = pdf.internal.pageSize.getWidth();
       const pageHeight = pdf.internal.pageSize.getHeight();
-
-      // Escalamos el contenido para que quepa siempre en una sola página (sin páginas extra en blanco)
-      const ratio = Math.min(pageWidth / canvas.width, pageHeight / canvas.height);
-      const imgWidth = canvas.width * ratio;
-      const imgHeight = canvas.height * ratio;
-      const x = (pageWidth - imgWidth) / 2;
-      const y = 0;
       const imgData = canvas.toDataURL('image/jpeg', 0.95);
 
-      pdf.addImage(imgData, 'JPEG', x, y, imgWidth, imgHeight);
+      // La plantilla tiene exactamente la proporción de una hoja A4 (794x1123px),
+      // así que la imagen cubre la página completa, de borde a borde, sin espacios en blanco.
+      pdf.addImage(imgData, 'JPEG', 0, 0, pageWidth, pageHeight);
 
       pdf.save(profile.fullName.replace(/\s+/g,'_') + '_CV.pdf');
       label.textContent = original;
     }).catch(function(err){
       console.error(err);
       label.textContent = original;
-      alert('No se pudo generar el CV. Inténtalo de nuevo.');
+      alert('No se pudo generar el CV: ' + (err && err.message ? err.message : err));
     });
   }
 </script>
